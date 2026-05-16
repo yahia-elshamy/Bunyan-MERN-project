@@ -1,0 +1,35 @@
+.aside {
+    color: var(--whit-color);
+    background-color: var(--main-color);
+    width: 250px;
+}
+
+.title {
+    font-size: 15px;
+    padding-left: 48.19px;
+    font-weight: 600;
+    color: #6882A1;
+    letter-spacing: 0.5px;
+}
+
+.icon {
+    font-size: 20px;
+}
+
+.linkTitle {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.navItem {
+    cursor: pointer;
+    height: 52.5px;
+    transition: background 0.5s;
+    text-decoration: none;
+    color: var(--whit-color);
+}
+
+.navItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
