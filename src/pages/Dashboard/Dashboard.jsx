@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import {useState} from 'react'
 import Footer from "../../components/Dashborad/Footer/Footer";
 import Navbar from "../../components/Dashborad/Navbar/Navbar";
 import Sidebar from "../../components/Dashborad/Sidebar/Sidebar";
@@ -10,6 +11,11 @@ import FormDashboard from "../../components/Dashborad/FormDashboard/FormDashboar
 import Developers from "./Developers";
 
 function Dashboard() {
+
+  const [userHasDraft, setUserHasDraft] = useState(false);
+  const [projectsHasDraft, setProjectsHasDraft] = useState(false);
+  const [developersHasDraft, setDevelopersHasDraft] = useState(false);
+
   const users= {
     title:"Users",
     btnLabel:"User",
@@ -42,19 +48,19 @@ function Dashboard() {
     <>
       <Navbar adminName="mohamed" />
       <div className="d-flex">
-        <Sidebar />
+        <Sidebar userHasDraft={userHasDraft} projectsHasDraft={projectsHasDraft} developersHasDraft={developersHasDraft} />
         <main className="flex-grow-1">
           <Routes>
             <Route path="/" element={<StatusPage />} />
-            <Route path="/users" element={<Users />}>
+            <Route path="/users" element={<Users setHasDraft={setUserHasDraft} />}>
               <Route index element={<TableDashboard data={users} />} />
               <Route path="add" element={<FormDashboard />} />
             </Route>
-            <Route path="/projects" element={<Projects />}>
+            <Route path="/projects" element={<Projects setHasDraft={setProjectsHasDraft} />}>
               <Route index element={<TableDashboard data={projects}/>} />
               <Route path="add" element={<FormDashboard />} />
             </Route>
-            <Route path="/developers" element={<Developers />}>
+            <Route path="/developers" element={<Developers setHasDraft={setDevelopersHasDraft} />}>
               <Route index element={<TableDashboard data={developers}/>} />
               <Route path="add" element={<FormDashboard />} />
             </Route>

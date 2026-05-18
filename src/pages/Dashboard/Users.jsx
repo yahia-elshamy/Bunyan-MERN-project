@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom"
 
-export default function Users() {
+export default function Users({setHasDraft}) {
     return(<>
         <section>
-            <Outlet />
+            <Outlet context={setHasDraft} />
         </section>
     </>)
 }

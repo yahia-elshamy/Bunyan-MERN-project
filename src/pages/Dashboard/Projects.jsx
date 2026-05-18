@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 
-export default function Projects() {
+export default function Projects({setHasDraft}) {
     return(<>
         <section>
-            <Outlet />
+            <Outlet context={setHasDraft} />
         </section>
     </>)
 }

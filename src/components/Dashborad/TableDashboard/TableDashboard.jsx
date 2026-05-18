@@ -23,7 +23,7 @@ export default function TableDashboard({ data }) {
             <tbody>
               {data.data.map((item, index) => (
                 <tr key={index}>
-                  <th scope="row">1</th>
+                  <th scope="row">{index + 1}</th>
                   <td>{item.firstName}</td>
                   <td>{item.lastName}</td>
                   <td>{item.handle}</td>

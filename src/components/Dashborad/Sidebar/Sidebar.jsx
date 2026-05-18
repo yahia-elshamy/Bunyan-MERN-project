@@ -2,15 +2,21 @@ import { NavLink } from 'react-router-dom'
 import Styles from './Sidebar.module.css'
 
 
-export default function Sidebar() {
+export default function Sidebar({userHasDraft, projectsHasDraft, developersHasDraft }) {
   const links = [
     {icon: "fa-chart-line", title: "STATUS", path: "/"},
-    {icon: "fa-users", title: "USER MANAGEMENT", path: "/users"},
-    {icon: "fa-building", title: "PROJECTS MANAGEMENT", path: "/projects"},
-    {icon: "fa-building", title: "DEVELOPERS MANAGEMENT", path: "/developers"},
+    {icon: "fa-users", title: "USER MANAGEMENT", path: "/users", showDraft: true},
+    {icon: "fa-building", title: "PROJECTS MANAGEMENT", path: "/projects", showDraft: true},
+    {icon: "fa-building", title: "DEVELOPERS MANAGEMENT", path: "/developers", showDraft: true},
     {icon: "fa-globe", title: "WEBSITE CMS"},
     {icon: "fa-message", title: "LIVE CHAT"}
   ]
+
+  const drafts = {
+    "/users": userHasDraft,
+    "/projects": projectsHasDraft,
+    "/developers": developersHasDraft
+  }
   
   return (<>
     <aside className={`min-vh-100 py-4 ${Styles.aside}`}>
@@ -21,6 +27,11 @@ export default function Sidebar() {
                 <NavLink key={index} className={`${Styles.navItem} px-3 d-flex align-items-center gap-2`} to={item.path}>
                     <i className={`fa-solid ${item.icon} ${Styles.icon}`}></i>
                     <span className={Styles.linkTitle}>{item.title}</span>
+
+                    {item.showDraft && drafts[item.path] && (
+                      <span className='badge bg-warning text-dark ms-auto'>Draft</span>
+                    )}
+
                 </NavLink>
             ))}
         </nav>
